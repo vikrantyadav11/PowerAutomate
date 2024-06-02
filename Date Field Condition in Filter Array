@@ -1,0 +1,32 @@
+@or(
+    equals(item()?['last_active'], null),
+    less(formatDateTime(item()?['last_active'], 'yyyy-MM-dd'), formatDateTime(addDays(utcNow(), -90), 'yyyy-MM-dd'))
+)
+
+
+Let's break this down:
+
+equals(item()?['last_active'], null): This checks if last_active is null.
+less(formatDateTime(item()?['last_active'], 'yyyy-MM-dd'), formatDateTime(addDays(utcNow(), -90), 'yyyy-MM-dd')): This checks if last_active is less than 90 days from the current date.
+By combining these conditions with an or operator, the filter will keep items where last_active is either null or within the last 90 days.
+
+Here's how you would implement it in the Filter array action:
+
+In the Filter array action, set the "From" field to your array variable.
+In the "Condition" field, use the above expression.
+Here’s a step-by-step guide on how to set this up in your logic app:
+
+Add the Filter array action:
+
+Select your array variable for the "From" field.
+Configure the condition:
+
+Click on "Edit in advanced mode".
+Paste the following expression:
+expression
+Copy code
+@or(
+    equals(item()?['last_active'], null),
+    less(formatDateTime(item()?['last_active'], 'yyyy-MM-dd'), formatDateTime(addDays(utcNow(), -90), 'yyyy-MM-dd'))
+)
+This setup will ensure that accounts with a last_active date of null or less than 90 days from the current date will be included in the filtered array.
