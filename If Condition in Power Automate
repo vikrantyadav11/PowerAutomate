@@ -1,0 +1,25 @@
+if(equals(items('Apply_to_each_next_page')?['last_active'], null), 'Never Accessed', formatDateTime(items('Apply_to_each_next_page')?['last_active'],'yyyy-MM-dd'))
+
+
+This expression works as follows:
+
+equals(items('Apply_to_each_next_page')?['last_active'], null): Checks if last_active is null.
+If last_active is null, it returns the string 'Never Accessed'.
+If last_active is not null, it formats the date using formatDateTime.
+Here’s how to implement this in your flow:
+
+Within your Apply to each action, locate the step where you update the Excel row.
+In the field where you want to set the last_active date, click on "Expression".
+Paste the modified expression:
+expression
+Copy code
+if(equals(items('Apply_to_each_next_page')?['last_active'], null), 'Never Accessed', formatDateTime(items('Apply_to_each_next_page')?['last_active'],'yyyy-MM-dd'))
+Click "OK" to save the expression.
+This will ensure that the last_active date is set to the formatted date if it exists, or to "Never Accessed" if it is null.
+
+Here’s an example in context:
+
+Add or Update Excel Row Action:
+Add the "Update a row" or "Add a row" action for Excel.
+In the field where you update the last_active date, use the expression provided above.
+By doing this, your flow will correctly handle both scenarios where last_active has a date value or is null.
