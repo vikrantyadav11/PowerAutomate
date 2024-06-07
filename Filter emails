@@ -1,0 +1,6 @@
+@not(or(
+    equals(item()?['email'], 'buildbot+noc@sprinklr.com'),
+    equals(item()?['email'], 'tickets@sprinklr.com'),
+    equals(item()?['email'], 'ops-master@sprinklr.com'),
+    equals(item()?['email'], 'svc-jirasupportintegration@sprinklr.com')
+))
